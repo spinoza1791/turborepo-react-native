@@ -1,20 +1,50 @@
-import { StyleSheet, Text, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Button } from "@repo/ui";
+// page.tsx
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Button } from '@repo/ui';
 
 export default function Page() {
+  const headerFadeAnim = useRef(new Animated.Value(0)).current;
+  const buttonScaleAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(headerFadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.linear,
+      useNativeDriver: true, 
+    }).start();
+
+    Animated.timing(buttonScaleAnim, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.ease,
+      useNativeDriver: true, 
+    }).start();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Native</Text> 
-      <View className="buttonContainer">
+      <Animated.Text style={[styles.header, { opacity: headerFadeAnim }]}>
+        Native
+      </Animated.Text>
+
+      <Animated.View
+        style={[
+          styles.buttonContainer,
+          { transform: [{ scale: buttonScaleAnim }] },
+        ]}
+      >
         <Button
           onClick={() => {
-            console.log("Pressed!");
-            alert("Pressed!");
+            console.log('Pressed!');
+            alert('Pressed!');
           }}
-          text="Boop4"
+          text="BoopAnimated"
         />
-      </View>
+      </Animated.View>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -23,13 +53,16 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   header: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
     fontSize: 36,
+  },
+  buttonContainer: {
+    // No need for specific styles here, as animation handles scaling
   },
 });
