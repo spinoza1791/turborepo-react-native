@@ -1,14 +1,35 @@
-"use client";
-
+import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { Button } from "@repo/ui";
 
-import styles from "../styles/index.module.css";
-
-export default function Web() {
+export default function Page() {
   return (
-    <div className={styles.container}>
-      <h1>Web</h1>
-      <Button onClick={() => console.log("Pressed!")} text="Boop3" />
-    </div>
+    <View style={styles.container}>
+      <Text style={[styles.header, "header"]}>Native</Text>
+      <View className="buttonContainer">
+        <Button
+          onClick={() => {
+            console.log("Pressed!");
+            alert("Pressed!");
+          }}
+          text="Boop"
+        />
+      </View>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  header: {
+    fontWeight: "bold",
+    marginBottom: 20,
+    fontSize: 36,
+  },
+});
