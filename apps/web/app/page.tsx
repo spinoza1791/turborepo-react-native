@@ -1,8 +1,12 @@
 // page.tsx
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button } from '@repo/ui';
+
+// ... rest of your component code (same as previous example)
 
 export default function Page() {
   const headerFadeAnim = useRef(new Animated.Value(0)).current;
