@@ -5,14 +5,16 @@ import { Button } from "@repo/ui";
 export default function Native() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Native</Text>
-      <Button
-        onClick={() => {
-          console.log("Pressed!");
-          alert("Pressed!");
-        }}
-        text="Boop"
-      />
+      <Text style={[styles.header, "header"]}>Native</Text>
+      <View style="buttonContainer">
+        <Button
+          onClick={() => {
+            console.log("Pressed!");
+            alert("Pressed!");
+          }}
+          text="Boop"
+        />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
