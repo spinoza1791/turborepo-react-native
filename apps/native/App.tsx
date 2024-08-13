@@ -12,7 +12,7 @@ export default function Native() {
             console.log("Pressed!");
             alert("Pressed!");
           }}
-          text="Boop"
+          text="Boop1"
         />
       </View>
       <StatusBar style="auto" />
